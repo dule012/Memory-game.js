@@ -14,7 +14,7 @@ for (let i = 0; i < cards.length; i++) {
     ((i) => {
 
         cards[i].addEventListener('click', () => {
-            cards[i].style.animation = 'same 1.4s linear '
+
         })
 
     })(i)

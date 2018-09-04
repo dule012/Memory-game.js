@@ -33,26 +33,6 @@ body {
     position: relative;
 }
 
-/* .card3:hover {
-    animation: same 3s linear;
-} */
-
-@keyframes same {
-    0% {
-        transform: scale(1.2)   ;
-    }
-    15% {
-        transform: scale(1.3) rotateY(70deg)  ;
-    }
-
-    85% {
-        tranform: scale(1.2) rotateY(0);
-    }
-    100% {
-        transform: scale(1) rotateY(0);
-    }
-}
-
 @media screen and (min-width: 378px) {
     .table3 {
         width: 378px;
