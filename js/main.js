@@ -1,21 +1,14 @@
-let label = document.querySelectorAll('label')
+let labels = document.querySelecotrAll('label')
+let scripts = document.getElementsByTagName('script')
 
-for (let i = 0; i < label.length; i++) {
+for (let i = 0; i < labels.lenght; i++) {
+   
     ((i) => {
-        label[i].addEventListener('click', () => {
-            console.log(label[i].firstElementChild.value)
-        })
-    })(i)
-}
-
-let cards = document.querySelectorAll('.card3')
-
-for (let i = 0; i < cards.length; i++) {
-    ((i) => {
-
-        cards[i].addEventListener('click', () => {
-
+        
+        labels[i].addEventListener('click', () => {
+            
         })
 
     })(i)
+
 }

@@ -8,6 +8,21 @@ body {
     background-image: url('../images/geometry2.png');
 }
 
+header {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+header span {
+    margin-right: 30px;
+}
+
+header label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
 .table3 {
     position: absolute;
     top: 6%;
@@ -73,6 +88,9 @@ body {
 }
 
 @media screen and (min-width: 860px) {
+    header {
+        font-size: 18px;
+    }
     .table3 {
         width: 860px;
         padding: 35px 0 0 27px;
