@@ -11,7 +11,7 @@ for (let i = 0; i < labels.length; i++) {
             const ToGuess2 = document.createElement('script')
             ToGuess2.setAttribute('src', './js/ToGuess2.js')
             body.append(ToGuess2)
-        } else {
+        } else if (e.currentTarget == labels[1] && scripts[1].getAttribute('src') !== 'ToGuess3.js') {
             scripts[1].remove()
             const ToGuess3 = document.createElement('script')
             ToGuess3.setAttribute('src', './js/ToGuess3.js')
