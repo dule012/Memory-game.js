@@ -1,14 +1,22 @@
-let labels = document.querySelecotrAll('label')
-let scripts = document.getElementsByTagName('script')
+const labels = document.querySelectorAll('input')
+const scripts = document.getElementsByTagName('script')
+const body = document.body
 
-for (let i = 0; i < labels.lenght; i++) {
-   
-    ((i) => {
-        
-        labels[i].addEventListener('click', () => {
-            
-        })
+for (let i = 0; i < labels.length; i++) {
 
-    })(i)
+    labels[i].addEventListener('click', (e) => {
 
+        if (e.currentTarget == labels[0] && scripts[1].getAttribute('src') !== 'ToGuess2.js') {
+            scripts[1].remove()
+            const ToGuess2 = document.createElement('script')
+            ToGuess2.setAttribute('src', './js/ToGuess2.js')
+            body.append(ToGuess2)
+        } else {
+            scripts[1].remove()
+            const ToGuess3 = document.createElement('script')
+            ToGuess3.setAttribute('src', './js/ToGuess3.js')
+            body.append(ToGuess3)
+        }
+        console.log('hello')
+    })
 }
