@@ -37,10 +37,6 @@ for (let i = 0; i < labels.length; i++) {
                 listOfCardTypes2[random] = listOfCardTypes2[i]
                 listOfCardTypes2[i] = holder
             }
-            const comparasion = []
-            let counter = 0
-            let count_to_win = 0
-
 
             const cards = document.getElementsByClassName('card2')
             const table = document.createElement('div')
@@ -66,34 +62,40 @@ for (let i = 0; i < labels.length; i++) {
                 div_back.append(card_type)
             }
 
-            for (let i = 0; i < cards.length; i++) {
-                cards[i].addEventListener('click', (e) => {
-                    if (counter < 2) {
-                        cards[i].style.transform = 'rotateY(180deg)'
-                        counter++
-                        comparasion.push(e.currentTarget)
-                        if (counter === 2) {
-                            if (comparasion[0].lastElementChild.firstElementChild.className == comparasion[1].lastElementChild.firstElementChild.className) {
-                                count_to_win += 2
-                                count_to_win == 16 ? setTimeout(() => { location.reload() }, 5000) : null
+            const comparasion = []
+            let counter = 0
+            let count_to_win = 0
+
+            const gameLogic = (e) => {
+                if (counter < 2) {
+                    e.currentTarget.style.transform = 'rotateY(180deg)'
+                    counter++
+                    comparasion.push(e.currentTarget)
+                    if (counter === 2) {
+                        if (comparasion[0].lastElementChild.firstElementChild.className == comparasion[1].lastElementChild.firstElementChild.className) {
+                            count_to_win += 2
+                            count_to_win == 16 ? setTimeout(() => { location.reload() }, 7000) : null
+                            counter = 0
+                            while (comparasion.length > 0) {
+                                comparasion[0].removeEventListener('click', gameLogic)
+                                comparasion.splice(0, 1)
+                            }
+
+                        } else {
+                            setTimeout(() => {
+                                comparasion[0].style.transform = 'rotateY(0deg)'
+                                comparasion[1].style.transform = 'rotateY(0deg)'
                                 counter = 0
                                 while (comparasion.length > 0) {
                                     comparasion.splice(0, 1)
                                 }
-
-                            } else {
-                                setTimeout(() => {
-                                    comparasion[0].style.transform = 'rotateY(0deg)'
-                                    comparasion[1].style.transform = 'rotateY(0deg)'
-                                    counter = 0
-                                    while (comparasion.length > 0) {
-                                        comparasion.splice(0, 1)
-                                    }
-                                }, 1100)
-                            }
+                            }, 1100)
                         }
                     }
-                })
+                }
+            }
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].addEventListener('click', gameLogic)
             }
 
         } else if (e.currentTarget == labels[1] && game_table3.length == 0) {
@@ -132,9 +134,7 @@ for (let i = 0; i < labels.length; i++) {
                 listOfCardTypes3[i] = holder
 
             }
-            const comparasion = []
-            let counter = 0
-            let count_to_win = 0
+
 
 
             const cards = document.getElementsByClassName('card3')
@@ -161,34 +161,41 @@ for (let i = 0; i < labels.length; i++) {
                 div_back.append(card_type)
             }
 
-            for (let i = 0; i < cards.length; i++) {
-                cards[i].addEventListener('click', (e) => {
-                    if (counter < 3) {
-                        cards[i].style.transform = 'rotateY(180deg)'
-                        counter++
-                        comparasion.push(e.currentTarget)
-                        if (counter === 3) {
-                            if (comparasion[0].lastElementChild.firstElementChild.className == comparasion[1].lastElementChild.firstElementChild.className == comparasion[2].lastElementChild.firstElementChild.className) {
-                                count_to_win += 3
-                                count_to_win == 24 ? setTimeout(() => { location.reload() }, 5000) : null
+            const comparasion = []
+            let counter = 0
+            let count_to_win = 0
+
+            const gameLogic = (e) => {
+                if (counter < 3) {
+                    e.currentTarget.style.transform = 'rotateY(180deg)'
+                    counter++
+                    comparasion.push(e.currentTarget)
+                    if (counter === 3) {
+                        if (comparasion[0].lastElementChild.firstElementChild.className == comparasion[1].lastElementChild.firstElementChild.className && comparasion[0].lastElementChild.firstElementChild.className == comparasion[2].lastElementChild.firstElementChild.className) {
+                            count_to_win += 3
+                            count_to_win == 24 ? setTimeout(() => { location.reload() }, 7000) : null
+                            counter = 0
+                            while (comparasion.length > 0) {
+                                comparasion[0].removeEventListener('click', gameLogic)
+                                comparasion.splice(0, 1)
+                            }
+                        } else {
+                            setTimeout(() => {
+                                comparasion[0].style.transform = 'rotateY(0deg)'
+                                comparasion[1].style.transform = 'rotateY(0deg)'
+                                comparasion[2].style.transform = 'rotateY(0deg)'
                                 counter = 0
                                 while (comparasion.length > 0) {
                                     comparasion.splice(0, 1)
                                 }
-                            } else {
-                                setTimeout(() => {
-                                    comparasion[0].style.transform = 'rotateY(0deg)'
-                                    comparasion[1].style.transform = 'rotateY(0deg)'
-                                    comparasion[2].style.transform = 'rotateY(0deg)'
-                                    counter = 0
-                                    while (comparasion.length > 0) {
-                                        comparasion.splice(0, 1)
-                                    }
-                                }, 1100)
-                            }
+                            }, 1100)
                         }
                     }
-                })
+                }
+            }
+
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].addEventListener('click', gameLogic)
             }
         }
     })
