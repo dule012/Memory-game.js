@@ -65,13 +65,22 @@ for (let i = 0; i < labels.length; i++) {
             const comparasion = []
             let counter = 0
             let count_to_win = 0
+            let openingCards = true
 
             const gameLogic = (e) => {
-                if (counter < 2) {
+                if (openingCards) {
                     e.currentTarget.style.transform = 'rotateY(180deg)'
-                    counter++
-                    comparasion.push(e.currentTarget)
+                    
+                    if (counter == 1 && comparasion[0] != e.currentTarget) {
+                        comparasion.push(e.currentTarget)
+                        counter++
+                    } else if (counter == 0) {
+                        comparasion.push(e.currentTarget)
+                        counter++
+                    }
+                    
                     if (counter === 2) {
+                        openingCards = false
                         if (comparasion[0].lastElementChild.firstElementChild.className == comparasion[1].lastElementChild.firstElementChild.className) {
                             count_to_win += 2
                             count_to_win == 16 ? setTimeout(() => { location.reload() }, 7000) : null
@@ -80,7 +89,7 @@ for (let i = 0; i < labels.length; i++) {
                                 comparasion[0].removeEventListener('click', gameLogic)
                                 comparasion.splice(0, 1)
                             }
-
+                            openingCards = true
                         } else {
                             setTimeout(() => {
                                 comparasion[0].style.transform = 'rotateY(0deg)'
@@ -89,6 +98,7 @@ for (let i = 0; i < labels.length; i++) {
                                 while (comparasion.length > 0) {
                                     comparasion.splice(0, 1)
                                 }
+                                openingCards = true
                             }, 1100)
                         }
                     }
@@ -164,13 +174,25 @@ for (let i = 0; i < labels.length; i++) {
             const comparasion = []
             let counter = 0
             let count_to_win = 0
+            let openingCards = true
 
             const gameLogic = (e) => {
-                if (counter < 3) {
+                if (openingCards) {
                     e.currentTarget.style.transform = 'rotateY(180deg)'
-                    counter++
-                    comparasion.push(e.currentTarget)
+
+                    if (counter == 0) {
+                        counter++
+                        comparasion.push(e.currentTarget)
+                    } else if (counter == 1 && comparasion[0] != e.currentTarget) {
+                        comparasion.push(e.currentTarget)
+                        counter++
+                    } else if (counter == 2 && comparasion[0] != e.currentTarget && comparasion[1] != e.currentTarget) {
+                        comparasion.push(e.currentTarget)
+                        counter++
+                    }
+
                     if (counter === 3) {
+                        openingCards = false
                         if (comparasion[0].lastElementChild.firstElementChild.className == comparasion[1].lastElementChild.firstElementChild.className && comparasion[0].lastElementChild.firstElementChild.className == comparasion[2].lastElementChild.firstElementChild.className) {
                             count_to_win += 3
                             count_to_win == 24 ? setTimeout(() => { location.reload() }, 7000) : null
@@ -179,6 +201,7 @@ for (let i = 0; i < labels.length; i++) {
                                 comparasion[0].removeEventListener('click', gameLogic)
                                 comparasion.splice(0, 1)
                             }
+                            openingCards = true
                         } else {
                             setTimeout(() => {
                                 comparasion[0].style.transform = 'rotateY(0deg)'
@@ -188,6 +211,7 @@ for (let i = 0; i < labels.length; i++) {
                                 while (comparasion.length > 0) {
                                     comparasion.splice(0, 1)
                                 }
+                                openingCards = true
                             }, 1100)
                         }
                     }
